@@ -1,0 +1,13 @@
+plugins:
+  - jekyll-remote-theme
+remote_theme: zivong/ockham
+
+markdown: CommonMarkGhPages
+
+title: かぎつきノート
+tagline: Writeup とか、あわよくば解説記事とか
+description: 説明ってどこに表示されるんですか?
+author:
+  name: keymoon
+  url: https://twitter.com/kymn_
+disqus: keymoon-writeup
