@@ -4,7 +4,7 @@ remote_theme: zivong/ockham
 
 markdown: CommonMarkGhPages
 
-baseurl: /post
+baseurl: /note
 title: かぎつきノート
 tagline: Writeup とか、あわよくば解説記事とか
 description: 説明ってどこに表示されるんですか?
