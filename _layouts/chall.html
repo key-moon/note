@@ -1,0 +1,103 @@
+---
+layout: default
+---
+
+<style>
+  .tag-title{
+    display: inline-block;
+    width: 12ex;
+    text-align: right;
+  }
+  
+  .tooltip{
+    position: absolute;
+    opacity: 0.0;
+    filter: alpha(opacity=0);
+  }
+  .tooltip-inner{
+    margin-left: 15ex;
+    padding: 3px 8px;
+    text-align: center;
+    background-color: #000;
+    border-radius: 3px;
+  }
+  .solved-star:hover+.tooltip{
+    opacity: .9;
+    filter: alpha(opacity=90);
+  }
+</style>
+
+<article class="post">
+  <h1 class="post-title">
+    {%- if page.genre -%}
+    [{{ page.genre | strip_html }}
+    {%- if page.points -%}
+    &nbsp;{{ page.points }} pts
+    {%- endif -%}
+    ]&nbsp;
+    {%- endif -%}
+    {%- if page.problem_name -%}
+    {{ page.problem_name | strip_html }} 
+    {%- endif -%}
+    {%- if page.ctf_name -%}
+    &nbsp;-&nbsp;<a href="{{ page.url | relative_url }}/../../">{{ page.ctf_name | strip_html }}</a>
+    {%- endif -%}
+    {%- if page.solves -%}
+    &nbsp;({{ page.solves }}&nbsp;solve(s))
+    {%- endif -%}
+  </h1>
+  <div class="post-meta">
+    {%- if page.solved_date -%}
+    <div>
+      <span class="tag-title">solved date:&nbsp;</span>
+      <time datetime="{{ page.solved_date | date_to_xmlschema }}" itemprop="datePublished">
+        {{ page.solved_date | date: "%Y/%m/%d" }}
+      </time>
+      {%- if page.during_ctf -%}
+      <span class="input-group-addon">
+        <span class="solved-star">☆</span>
+        <div class="tooltip" style="pointer-events:none">
+          <div class="tooltip-inner">solved during ctf</div>
+        </div>
+      </span>
+      {%- endif -%}
+    </div>
+    {%- endif -%}
+    {%- if page.tag -%}
+    <div>
+      <span class="tag-title">tag(s):&nbsp;</span>
+    {% for tag in page.tag %}
+      <a href="{{ "/tags" | relative_url }}?tag={{ tag }}"><code>{{ tag }}</code></a>
+      {%- if forloop.last == false %}, {% endif -%}
+    {% endfor %}
+    </div>
+    {%- endif -%}
+  </div>
+
+  {{ content }}
+
+</article>
+
+{% if jekyll.environment == "production" and site.disqus and page.comments != false %}
+{% include disqus.html %}
+{% endif %}
+
+<!--
+<div class="post-pagination">
+  {% if page.next %}
+    <a class="post-pagination-item newer" href="{{ page.next.url | relative_url }}">
+      <i class="fas fa-chevron-left"></i> <span class="post-pagination-title">{{ page.next.title | markdownify | strip_html }}</span>
+    </a>
+  {% else %}
+    <span class="post-pagination-item newer"></span>
+  {% endif %}
+
+  {% if page.previous %}
+    <a class="post-pagination-item older" href="{{ page.previous.url | relative_url }}">
+      <span class="post-pagination-title">{{ page.previous.title | markdownify | strip_html }}</span> <i class="fas fa-chevron-right"></i>
+    </a>
+  {% else %}
+    <span class="post-pagination-item older"></span>
+  {% endif %}
+</div>
+-->
