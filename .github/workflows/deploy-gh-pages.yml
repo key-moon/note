@@ -38,7 +38,7 @@ jobs:
         pwd
 
     - name: Build
-      run: make build-release
+      run: make build-docs
     
     - name: Copy Files
       run: cp -r docs ../
