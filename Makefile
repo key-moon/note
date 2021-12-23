@@ -29,9 +29,11 @@ build-docs: clean
 	cp -r "${THEME_PATH}" "${DOCS_PATH}"
 	cp -r "${WRITEUPS_PATH}" "${WRITEUPS_DEST_PATH}"
 
-	-for template in ${WRITEUPS_DEST_PATH}/**/_template; do \
-		echo "  rm -r $${template}"; \
-		rm -r "$${template}"; \
+	for template in ${WRITEUPS_DEST_PATH}/**/_template; do \
+		if [ -d $${template} ]; then \
+			echo "  rm -r $${template}"; \
+			rm -r "$${template}"; \
+		fi; \
 	done
 
 	for md in ${WRITEUPS_DEST_PATH}/**/index.md; do \
