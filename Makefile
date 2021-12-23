@@ -23,7 +23,7 @@ serve: build-docs
 
 serve-release: build-docs
 	cd "${DOCS_PATH}"; bundle install
-	cd "${DOCS_PATH}"; JEKYLL_ENV=production bundle exec jekyll build
+	cd "${DOCS_PATH}"; JEKYLL_ENV=production bundle exec jekyll serve
 
 build-docs: clean
 	cp -r "${THEME_PATH}" "${DOCS_PATH}"
