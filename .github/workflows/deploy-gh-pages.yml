@@ -53,6 +53,7 @@ jobs:
    
     - name: Update Repository
       run: |
+        cp CNAME ../docs
         rm -rf ./*
         cp -rT ../docs ./
 
