@@ -72,12 +72,3 @@ def process(s: str, filename: str, handlers=_handlers) -> str:
     res = _process()
     assert(i == len(s))
     return res
-
-def process_extensions(filename: str):
-    with open(filename, "r") as f:
-        doc = f.read()
-    for tag in re.findall(r"\[!.*\]", doc):
-        formula = tag[2:-1]
-        doc = doc.replace(tag, process(formula, filename))
-    with open(filename, "w") as f:
-        f.write(doc)
