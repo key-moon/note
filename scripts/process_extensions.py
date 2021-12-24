@@ -1,6 +1,6 @@
 import re
 import sys
-from .md_extensions import process
+from .lib.md_extensions import process
 
 if __name__ == "__main__":
     assert(2 <= len(sys.argv))
