@@ -17,7 +17,7 @@ def get_body(doc: str) -> str:
     return doc.split(SECTION_SPLITTER, 3)[-1]
 
 def to_tags_section(tags: Dict[str, str]) -> str:
-    return SECTION_SPLITTER + ''.join([f'{name}: {content}\n' for name, content in tags]) + SECTION_SPLITTER
+    return SECTION_SPLITTER + ''.join([f'{key}: {tags[key]}\n' for key in tags]) + SECTION_SPLITTER
 
 def set_tags(doc: str, tags: Dict[str, str]) -> str:
     tags = {**get_tags(doc), **tags}

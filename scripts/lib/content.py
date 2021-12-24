@@ -15,7 +15,7 @@ def get_screen_name(name: str):
     return name.strip('_')
 
 def foreach_files(name, op: Callable[[str], str]):
-    for path in glob(name):
+    for path in glob(name, recursive=True):
         with open(path, "r") as f:
             content = f.read()
         with open(path, "w") as f:
@@ -37,7 +37,7 @@ def add_chall(ctf_name, chall_name, chall_screen_name = None):
     path_name = get_chall_dir(ctf_screen_name, chall_screen_name)
     if path.exists(path_name): raise FileExistsError("file already exists")
     copytree(get_chall_dir(ctf_screen_name, TEMPLATE_NAME), path_name)
-    foreach_files(path.join(path_name, "index.md"), lambda content: set_tag(content, "chall_name", chall_name))
+    foreach_files(path.join(path_name, "index.md"), lambda content: set_tag(content, "problem_name", chall_name))
     return path_name
 
 # article list per CTF / article list per tag
