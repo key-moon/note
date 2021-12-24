@@ -5,7 +5,7 @@ problem_name:
 genre: 
 solved_date: 
 during_ctf: 
-tag: 
+tag: []
 ---
 
 ## 概要
