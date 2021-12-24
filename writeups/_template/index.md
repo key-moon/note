@@ -1,8 +1,8 @@
 ---
 layout: ctf
-ctf_name: TSG CTF 2021
+ctf_name: 
 prologue: false
-duration: [2021-10-02T16:00:00, 2021-10-03T16:00:00]
+duration: [2000-01-01T00:00:00, 2021-01-01T00:00:00]
 team_name: 
 solo: 
 team_points: 
