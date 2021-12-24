@@ -1,6 +1,6 @@
 from os import path
 
-scripts_dir = path.dirname(__file__)
+scripts_dir = path.dirname(path.dirname(__file__))
 repo_dir = path.dirname(scripts_dir)
 writeups_dir = path.join(repo_dir, "writeups")
 docs_dir = path.join(repo_dir, "docs")
