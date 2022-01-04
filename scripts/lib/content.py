@@ -24,7 +24,7 @@ def foreach_files(name, op: Callable[[str], str]):
 def add_ctf(name, screen_name = None):
     if screen_name is None: screen_name = get_screen_name(name)
     path_name = get_ctf_dir(screen_name)
-    if path.exists(path_name): raise FileExistsError("file already exists")
+    if path.exists(path_name): raise FileExistsError("file already exists", path_name)
     copytree(get_ctf_dir(TEMPLATE_NAME), path_name)
     foreach_files(path.join(path_name, "**/index.md"), lambda content: set_tag(content, "ctf_name", name))
     return path_name
@@ -33,9 +33,9 @@ def add_chall(ctf_name, chall_name, chall_screen_name = None):
     ctf_screen_name = get_screen_name(ctf_name)
     if chall_screen_name is None: chall_screen_name = get_screen_name(chall_name)
     ctf_path = get_ctf_dir(ctf_screen_name)
-    if not exists(ctf_path): add_ctf(ctf_screen_name)
+    if not exists(ctf_path): add_ctf(ctf_name)
     path_name = get_chall_dir(ctf_screen_name, chall_screen_name)
-    if path.exists(path_name): raise FileExistsError("file already exists")
+    if path.exists(path_name): raise FileExistsError("file already exists", path_name)
     copytree(get_chall_dir(ctf_screen_name, TEMPLATE_NAME), path_name)
     foreach_files(path.join(path_name, "index.md"), lambda content: set_tag(content, "problem_name", chall_name))
     return path_name

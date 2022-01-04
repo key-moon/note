@@ -24,7 +24,6 @@ if __name__ == "__main__":
     parser.add_argument("--in-ctf", dest='IN_CTF', action='store_const', default="false", const="true")
     parser.add_argument("--no-editor", dest='OPEN_EDITOR', action='store_const', default=True, const=False)
     parser.add_argument("--interactive", "-i", dest='INTERACTIVE', action='store_const', default=False, const=True)
-    parser.add_argument("--verbose", "-v", dest='VERBOSE', action='store_const', default=False, const=True)
     res = parser.parse_args()
     
     tags = {
@@ -38,18 +37,21 @@ if __name__ == "__main__":
     if res.INTERACTIVE:
         ctfs = [entry.name for entry in os.scandir(writeups_dir) if entry.is_dir()]
         ctfs.remove("_template")
-        tags = option_getter(
-            ["ctf_name", "problem_name", "genre", "solved_date", "during_ctf", "tag"],
-            tags,
-            {
-                "ctf_name": ctfs,
-                "genre": ["pwn", "crypto", "web", "rev", "misc", "osint", "forensics"],
-                "during_ctf": ["true", "false"] 
-            },
-            {}
-        )
+        tags = {
+            **tags,
+            **option_getter(
+                ["ctf_name", "problem_name", "genre", "solved_date", "during_ctf", "tag"],
+                tags,
+                {
+                    "ctf_name": ctfs,
+                    "genre": ["pwn", "crypto", "web", "rev", "misc", "osint", "forensics"],
+                    "during_ctf": ["true", "false"] 
+                },
+                {}
+            )
+        }
     
-    chall_path = add_chall(res.CTF_NAME, res.CHALL_NAME, res.SCREEN_NAME)
+    chall_path = add_chall(tags["ctf_name"], tags["problem_name"], res.SCREEN_NAME)
     chall_md_path = path.join(chall_path, "index.md")
     with open(chall_md_path, "r") as f:
         doc = f.read()
