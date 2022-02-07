@@ -2,3 +2,5 @@
 __pycache__
 _site
 /docs
+# prefix for draft 
+_d_*
