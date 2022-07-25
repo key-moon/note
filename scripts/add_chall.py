@@ -32,7 +32,9 @@ if __name__ == "__main__":
         "genre": res.GENRE,
         "solved_date": res.DATE,
         "during_ctf": res.IN_CTF,
-        "tag": res.TAG
+        "tag": res.TAG,
+        "fav": "false",
+        "difficulty": "easy"
     }
     if res.INTERACTIVE:
         ctfs = [entry.name for entry in os.scandir(writeups_dir) if entry.is_dir()]
@@ -40,12 +42,14 @@ if __name__ == "__main__":
         tags = {
             **tags,
             **option_getter(
-                ["ctf_name", "problem_name", "genre", "solved_date", "during_ctf", "tag"],
+                ["ctf_name", "problem_name", "genre", "solved_date", "during_ctf", "tag", "fav", "difficulty"],
                 tags,
                 {
                     "ctf_name": ctfs,
                     "genre": ["pwn", "crypto", "web", "rev", "misc", "osint", "forensics"],
-                    "during_ctf": ["true", "false"] 
+                    "during_ctf": ["true", "false"],
+                    "fav": ["true", "false"],
+                    "difficulty": ["beginner", "easy", "normal", "hard", "lunatic"]
                 },
                 {}
             )

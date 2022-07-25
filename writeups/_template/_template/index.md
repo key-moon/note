@@ -6,6 +6,8 @@ genre:
 solved_date: 
 during_ctf: 
 tag: []
+fav: 
+difficulty: 
 ---
 
 ### 概要

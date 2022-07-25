@@ -12,10 +12,6 @@ tag: [wasm, unicode, jsfuck]
 
 WASM にて実装されている MoCkINg CaSe 化と、それをラップする HTML アプリケーションが与えられる。Admin Bot に対して XSS できれば勝ち。
 
-```
-[!checksec:chall]
-```
-
 [!details:コード:(!src:blazingfast.c:c)
 
 (!src:index.js:js)]
