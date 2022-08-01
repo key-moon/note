@@ -3,6 +3,8 @@ plugins:
 remote_theme: zivong/ockham
 
 markdown: CommonMarkGhPages
+  options: ["UNSAFE", "SMART", "FOOTNOTES"]
+  extensions: ["strikethrough", "autolink", "table", "tagfilter"]
 
 baseurl: /
 title: keymoon's note
