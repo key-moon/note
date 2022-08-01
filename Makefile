@@ -38,7 +38,7 @@ build-docs: clean
 
 	for md in ${WRITEUPS_DEST_PATH}/**/index.md; do \
 		echo "  process_extensions $${md}"; \
-		scripts/process_extensions.py "$${md}"; \
+		python scripts/process_extensions.py "$${md}"; \
 	done
 
 clean:
